@@ -206,9 +206,7 @@ namespace OptimizelySDK.Event.Builder
             }
 
             snapshot[Params.DECISIONS] = decisions;
-            snapshot[Params.EVENTS] = new object[]{
-                    eventDict
-                };
+            snapshot[Params.EVENTS] = new object[] { eventDict };
 
             conversionEventParams.Add(snapshot);
 

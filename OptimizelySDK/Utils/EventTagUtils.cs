@@ -31,12 +31,7 @@ namespace OptimizelySDK.Utils
             string logMessage = string.Empty;
             LogLevel logLevel = LogLevel.INFO;
 
-            if (eventTags == null)
-            {
-                logMessage = "Event tags is undefined.";
-                logLevel = LogLevel.DEBUG;
-            }
-            else if (!eventTags.ContainsKey(REVENUE_EVENT_METRIC_NAME))
+            if (!eventTags.ContainsKey(REVENUE_EVENT_METRIC_NAME))
             {
                 logMessage = "The revenue key is not defined in the event tags.";
                 logLevel = LogLevel.DEBUG;
@@ -73,12 +68,7 @@ namespace OptimizelySDK.Utils
             string logMessage = string.Empty;
             LogLevel logLevel = LogLevel.INFO;
 
-            if (eventTags == null)
-            {
-                logMessage = "Event tags is undefined.";
-                logLevel = LogLevel.DEBUG;
-            }
-            else if (!eventTags.ContainsKey(VALUE_EVENT_METRIC_NAME))
+            if (!eventTags.ContainsKey(VALUE_EVENT_METRIC_NAME))
             {
                 logMessage = "The numeric metric key is not in event tags.";
                 logLevel = LogLevel.DEBUG;

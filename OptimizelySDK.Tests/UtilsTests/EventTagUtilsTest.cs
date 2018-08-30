@@ -68,13 +68,11 @@ namespace OptimizelySDK.Tests.UtilsTests
             };
 
             // Invalid data.
-            Assert.Null(EventTagUtils.GetRevenueValue(null, Logger));
             Assert.Null(EventTagUtils.GetRevenueValue(invalidTag, Logger));
             Assert.Null(EventTagUtils.GetRevenueValue(nullValue, Logger));
             Assert.Null(EventTagUtils.GetRevenueValue(invalidValue, Logger));
             Assert.Null(EventTagUtils.GetRevenueValue(invalidTagNonRevenue, Logger));
-
-            LoggerMock.Verify(l => l.Log(LogLevel.DEBUG, "Event tags is undefined."), Times.Once);
+            
             LoggerMock.Verify(l => l.Log(LogLevel.DEBUG, "The revenue key is not defined in the event tags."), Times.Exactly(2));
             LoggerMock.Verify(l => l.Log(LogLevel.DEBUG, "The revenue key value is not defined in event tags."), Times.Once);
             LoggerMock.Verify(l => l.Log(LogLevel.ERROR, "Revenue value is not an integer or couldn't be parsed as an integer."), Times.Once);
@@ -122,11 +120,9 @@ namespace OptimizelySDK.Tests.UtilsTests
             };
 
             // Invalid data.
-            Assert.Null(EventTagUtils.GetNumericValue(null, Logger));
             Assert.Null(EventTagUtils.GetNumericValue(invalidTag, Logger));
             Assert.Null(EventTagUtils.GetNumericValue(nullValue, Logger));
-
-            LoggerMock.Verify(l => l.Log(LogLevel.DEBUG, "Event tags is undefined."), Times.Once);
+            
             LoggerMock.Verify(l => l.Log(LogLevel.DEBUG, "The numeric metric key is not in event tags."), Times.Once);
             LoggerMock.Verify(l => l.Log(LogLevel.DEBUG, "The numeric metric key value is not defined in event tags."), Times.Once);
 
@@ -143,12 +139,10 @@ namespace OptimizelySDK.Tests.UtilsTests
             LoggerMock.Verify(l => l.Log(LogLevel.INFO, $"The numeric metric value {expectedValue3} will be sent to results."), Times.Once);
         }
 
+        /*
         [Test]
         public void TestGetNumericMetricInvalidArgs()
         {
-            Assert.IsNull(EventTagUtils.GetNumericValue(null, Logger));
-            LoggerMock.Verify(l => l.Log(LogLevel.DEBUG, "Event tags is undefined."), Times.Once);
-
             //Errors for all, because it accepts only dictionary// 
             // Not valid test cases in C# 
             //Assert.IsNull(EventTagUtils.GetEventValue(0.5));
@@ -158,7 +152,7 @@ namespace OptimizelySDK.Tests.UtilsTests
             //Assert.IsNull(EventTagUtils.GetEventValue(True));
             //Assert.IsNull(EventTagUtils.GetEventValue(False));
         }
-
+        */
         
         [Test]
         public void TestGetNumericMetricNoValueTag()

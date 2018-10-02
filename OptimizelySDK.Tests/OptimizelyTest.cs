@@ -1711,6 +1711,25 @@ namespace OptimizelySDK.Tests
             TestActivateListener(userAttributes);
         }
 
+        [Test]
+        public void TestActivateSendsBothValidAndInvalidAttributesToListener()
+        {
+            var userAttributes = new UserAttributes
+            {
+                // Valid Attributes
+                { "device_type", "iPhone" },
+                { "boolean_key", false },
+                { "double_key", 3.14},
+                //Invalid Attributes
+                { "object_attr", new object()},
+                { "array_attr", new string[] { "a", "b", "c"} },
+                // Attributes not exist in datafile
+                { "__invalid_attr__", 1.6},
+            };
+
+            TestActivateListener(userAttributes);
+        }
+
         public void TestActivateListener(UserAttributes userAttributes)
         {
             var experimentKey = "group_experiment_1";
@@ -1790,6 +1809,25 @@ namespace OptimizelySDK.Tests
             };
 
             TestTrackListener(userAttributes, eventTags);
+        }
+
+        [Test]
+        public void TestTrackSendsBothValidAndInvalidAttributesToListener()
+        {
+            var userAttributes = new UserAttributes
+            {
+                // Valid Attributes
+                { "device_type", "iPhone" },
+                { "boolean_key", false },
+                { "double_key", 3.14},
+                //Invalid Attributes
+                { "object_attr", new object()},
+                { "array_attr", new string[] { "a", "b", "c"} },
+                // Attributes not exist in datafile
+                { "__invalid_attr__", 1.6},
+            };
+
+            TestTrackListener(userAttributes, null);
         }
 
         public void TestTrackListener(UserAttributes userAttributes, EventTags eventTags)
